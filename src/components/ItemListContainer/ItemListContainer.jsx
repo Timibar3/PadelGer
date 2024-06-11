@@ -14,11 +14,6 @@ const ItemListContainer = ({greetings}) => {
     const { origenId } = useParams()
     const { outlet } = useParams()
 
-    console.log(categoryId)
-    console.log(estiloId)
-    console.log(origenId)
-    console.log(outlet)
-
     useEffect(() => {
         setLoading(true)
         const dataProductos = categoryId 
@@ -36,8 +31,6 @@ const ItemListContainer = ({greetings}) => {
             .finally(() => setLoading(false))
     },[categoryId, estiloId, origenId, outlet])
 
-
-    console.log(productos)
 
     return (
         <>

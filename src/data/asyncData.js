@@ -220,7 +220,6 @@ export const getProductoId = (id) => {
         const productosDetalle = productos.find((prod) => prod.id === parseInt(id))
         setTimeout(() => {
             res(productosDetalle)
-            console.log(productosDetalle)
         }, 1500)
     })
 }

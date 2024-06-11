@@ -26,9 +26,6 @@ const ItemDetailContainer = () => {
             .finally(() => setLoading(false))
     },[Id])
 
-    console.log(Id)
-    console.log(producto)
-
     return (
         <>
             <span className="d-block p-2 text-bg-primary" style={{textAlign: 'center'}}>Detalle de Producto</span>
