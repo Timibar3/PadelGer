@@ -3,6 +3,8 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getProductoId } from '../../data/asyncData'
 import { PuffLoader } from 'react-spinners'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
 
 const ItemDetailContainer = () => {
 
@@ -12,6 +14,26 @@ const ItemDetailContainer = () => {
     const { Id } = useParams()
     const navigate = useNavigate()
 
+    useEffect(() => {
+
+        const docRef = doc(db, 'productos', Id)
+        setLoading(true)
+
+        getDoc(docRef)
+            .then((res) => {
+                if(!res.data()){
+                    navigate('/*')
+                }else{
+                    setProducto(
+                        {...res.data(), id: res.id}
+                )}
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false))
+
+    },[Id])
+
+    /*
     useEffect (() => {
         setLoading(true)
         getProductoId(Id)
@@ -25,6 +47,7 @@ const ItemDetailContainer = () => {
             .catch((error) => console.log(error))
             .finally(() => setLoading(false))
     },[Id])
+    */
 
     return (
         <>
@@ -33,7 +56,7 @@ const ItemDetailContainer = () => {
                 {
                     loading
                     ? <PuffLoader color="#0d6efd" />
-                    : <ItemDetail producto={producto}/>
+                    : <ItemDetail {...producto}/>
                 }
                 
                 

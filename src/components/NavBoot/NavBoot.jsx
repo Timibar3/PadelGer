@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import CartWidget from '../CartWidget/CartWidget'
 
 const NavBoot = () => {
@@ -13,9 +13,9 @@ const NavBoot = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Paletas
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/categorias/Paleta">Todas</Link></li>
                                     <li><Link className="dropdown-item" to="/Paleta/Control">Control</Link></li>
@@ -24,9 +24,9 @@ const NavBoot = () => {
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Pelotas
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/categorias/Pelotas">Todas</Link></li>
                                     <li><Link className="dropdown-item" to="/Pelotas/Nacional">Nacionales</Link></li>
@@ -34,10 +34,10 @@ const NavBoot = () => {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/categorias/Accesorios">Accesorios</Link>
+                                <NavLink className="nav-link" to="/categorias/Accesorios">Accesorios</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/descuento/outlet">Outlet</Link>
+                                <NavLink className="nav-link" to="/descuento/outlet">Outlet</NavLink>
                             </li>
                             
                         </ul>
