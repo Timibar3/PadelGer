@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import Context from '../../context/CartContext'
 import { BsTrash3Fill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
 
+    const navigate = useNavigate()
+    
     const { cart, removeItem, clearCart, getTotal } = useContext(Context)
     console.log(cart)
 
@@ -20,7 +22,8 @@ const Cart = () => {
                                 <figcaption className="figure-caption text-end">Tu carrito aún esta vacio</figcaption>
                             </figure>
                         </Link>
-                        : <table className="table table-hover ">
+                        : <>
+                        <table className="table table-hover ">
                             <thead className='table-group-divider table-primary'>
                                 <tr>
                                     <th scope="col">Nombre</th>
@@ -45,17 +48,16 @@ const Cart = () => {
                             </tbody>
                             <tfoot className="table-group-divider table-primary">
                                 <tr>
-
                                     <th><button className="btn btn-outline-primary" onClick={() => clearCart()}>Vaciar Carrito</button></th>
                                     <th></th>
                                     <th></th>
                                     <th>$ {new Intl.NumberFormat('de-DE').format(getTotal())}</th>
                                     <th></th>
-
                                 </tr>
                             </tfoot>
-
                         </table >
+                        <button className="btn btn-primary" type="submit" onClick={() => navigate('/checkout')}>Finalizar Compra</button>
+                        </>
                 }
             </div>
         </>

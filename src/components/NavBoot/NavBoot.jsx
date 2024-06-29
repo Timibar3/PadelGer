@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import CartWidget from '../CartWidget/CartWidget'
+import SearchForm from '../SearchForm/SearchForm'
 
 const NavBoot = () => {
     return (
@@ -38,9 +39,9 @@ const NavBoot = () => {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/descuento/outlet">Outlet</NavLink>
-                            </li>
-                            
+                            </li>                            
                         </ul>
+                        <SearchForm/>
                     </div>
                     <CartWidget></CartWidget>
                 </div>

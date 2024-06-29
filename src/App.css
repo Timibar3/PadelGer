@@ -1,3 +1,16 @@
 body {
     background-color: #c5d9e2;
 }
+
+.sumador {
+    display: flex;
+    justify-content: center;
+    border: solid 2px;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 30%;
+    background-color: #0d6efd;
+    color: white;
+}

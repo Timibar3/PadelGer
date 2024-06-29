@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getProductoId } from '../../data/asyncData'
 import { PuffLoader } from 'react-spinners'
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
@@ -30,24 +29,7 @@ const ItemDetailContainer = () => {
             })
             .catch((error) => console.log(error))
             .finally(() => setLoading(false))
-
     },[Id])
-
-    /*
-    useEffect (() => {
-        setLoading(true)
-        getProductoId(Id)
-            .then((res) => {
-                if(!res) {
-                    navigate('/*')
-                }else{
-                    setProducto(res)
-                }
-            })
-            .catch((error) => console.log(error))
-            .finally(() => setLoading(false))
-    },[Id])
-    */
 
     return (
         <>
@@ -55,7 +37,7 @@ const ItemDetailContainer = () => {
             <div className="container" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
                 {
                     loading
-                    ? <PuffLoader color="#0d6efd" />
+                    ? <div class="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
                     : <ItemDetail {...producto}/>
                 }
                 

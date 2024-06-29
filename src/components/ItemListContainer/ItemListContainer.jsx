@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../firebase/config'
+
+
 
 const ItemListContainer = ({greetings}) => {
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     const { categoryId } = useParams()
     const { estiloId } = useParams()
     const { origenId } = useParams()
     const { outlet } = useParams()
+    const { resultadoId } = useParams()
 
     useEffect(() => {
         const productosRef = collection(db, 'productos')
@@ -29,46 +33,27 @@ const ItemListContainer = ({greetings}) => {
 
         getDocs(q)
             .then((res) => {
-                setProductos(
-                    res.docs.map((doc) => {
-                        return { ...doc.data(), id: doc.id}
-                    })
-                )
+                const listado = res.docs.filter((doc) => doc.data().nombre.toLowerCase().includes(resultadoId != undefined ? resultadoId.toLowerCase() : ''))
+                listado.length != 0 
+                    ? setProductos(
+                        listado.map((doc) => {
+                            return { ...doc.data(), id: doc.id}
+                        }))
+                    : navigate('/notfound')              
             })
             .catch((error) => console.log(error))
             .finally(() => setLoading(false))
 
-    },[categoryId, estiloId, origenId, outlet])
-
-/*
-    useEffect(() => {
-        setLoading(true)
-        const dataProductos = categoryId 
-                                ? getProductosCategoria(categoryId) 
-                                : estiloId 
-                                ? getPaletaEstilos(estiloId)
-                                : origenId
-                                ? getPelotasOrigen(origenId) 
-                                : outlet
-                                ? getProductosOutlet('Outlet')
-                                : getProductos()
-        dataProductos
-            .then((res) => setProductos(res))
-            .catch((error) => console.log(error))
-            .finally(() => setLoading(false))
-    },[categoryId, estiloId, origenId, outlet])
-*/
+    },[categoryId, estiloId, origenId, outlet, resultadoId])
 
     return (
         <>
-            <span className="d-block p-2 text-bg-primary" style={{textAlign: 'center'}}>{greetings}</span>
+            <span className="d-block p-2 text-bg-primary" style={{textAlign: 'center'}}>{greetings} {resultadoId}</span>
             {
                 loading
-                ? <PuffLoader color="#0d6efd" />
+                ? <div class="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
                 : <ItemList productos={productos}></ItemList>
             }
-            
-            
         </>
     )
 }

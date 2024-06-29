@@ -16,12 +16,12 @@ const ItemCount = ({stock, onAdd}) => {
 
 
     return (
-        <>
+        <div>
             <button className='btn btn-primary' onClick={ () => incrementar()}>+1</button>
             <span style={{margin:'5px'}} >{contador}</span>
             <button className='btn btn-primary' style={{marginRight:'15px'}} onClick={ () => decrementar(1)}>-1</button>
             <button className="btn btn-outline-primary" onClick={() => onAdd(contador)}>Comprar</button>
-        </>
+        </div>
     )
 }
 
