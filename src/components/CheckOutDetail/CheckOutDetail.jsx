@@ -29,7 +29,7 @@ const CheckOutDetail = () => {
         <>
             {
                 loading
-                    ? <div class="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
+                    ? <div className="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
                     : <div className="container d-flex justify-content-center" style={{marginTop:'10px'}}>
                         <div className="card " style={{ width: '30rem' }}>
                             <div className="card-body d-flex flex-column align-items-center">

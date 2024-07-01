@@ -51,7 +51,7 @@ const ItemListContainer = ({greetings}) => {
             <span className="d-block p-2 text-bg-primary" style={{textAlign: 'center'}}>{greetings} {resultadoId}</span>
             {
                 loading
-                ? <div class="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
+                ? <div className="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
                 : <ItemList productos={productos}></ItemList>
             }
         </>

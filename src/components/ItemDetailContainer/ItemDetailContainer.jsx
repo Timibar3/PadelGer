@@ -37,7 +37,7 @@ const ItemDetailContainer = () => {
             <div className="container" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
                 {
                     loading
-                    ? <div class="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
+                    ? <div className="d-flex justify-content-center"><PuffLoader color="#0d6efd" /></div>
                     : <ItemDetail {...producto}/>
                 }
                 
